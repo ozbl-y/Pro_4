@@ -21,20 +21,21 @@ with open("fire.txt", "r") as my_file:
 
 # 14x21 매트릭스 정의
 matrix = [
-    [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True],
-    [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True],
-    [True, True, True, True, True, True, True, False, False, False, False, True, True, True, True, True, True, True, True, True, True],
-    [True, False, False, True, True, True, True, True, False, True, True, True, True, True, True, True, True, True, True, True, True],
-    [True, True, True, True, True, True, True, True, False, True, True, True, True, True, False, False, False, False, True, True, True],
-    [True, True, True, True, True, True, True, True, False, True, True, True, True, True, True, True, True, False, True, True, True],
-    [True, True, True, False, False, False, False, False, False, True, True, False, False, True, True, True, False, True, True, True, True],
-    [True, True, True, True, False, True, True, True, True, True, True, False, False, True, True, True, True, False, True, True, True],
-    [True, True, True, True, False, True, True, True, True, True, True, True, True, True, True, True, True, False, False, False, False],
-    [True, True, True, True, False, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True],
-    [True, False, False, False, False, False, False, False, False, False, False, False, False, True, True, True, True, True, False, True, True],
-    [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, False, True],
-    [True, True, True, True, True, True, True, True, True, True, True, True, False, False, False, False, False, True, True, False, True],
-    [True, True, True, False, False, True, True, True, True, True, True, True, True, True, True, True, True, True, True, False, True]
+    [True, True, True, True, True, True, True, True, True, True, True,True, True, True, True, True, True, True, True, True, True, True], #0
+    [True, True, True, True, True, True, True, True, True, True, True,True, True, True, True, True, True, True, True, True, True, True],#1
+    [True, True, True, True, True, True, False, False, False, False, False,True, True, True, True, True, True, True, True, True, True, True],#2
+    [True, False, False, True, True, True, True, True, False, True, True,True, True, True, False,False,False,False, True, True, True, True],#3
+    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#4
+    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#5
+    [True, True, True, True, True, True, False, False, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#6
+    [True, True, True, True, True, True, True, True, True, True,True,True,False, False, True, True, True, True, True, True, True, True],#7
+    [True, True, True, True, True, True, True, True, True, True,True,True,False, False, True, True, True, True, False, False,False,False],#8
+    [True, True, True,  False, False, False, False,False, False, True,True,True,False, False, True, True, True, True, True, True, True, True],#9
+    [True,True, True,True, True, True, True, True,False, True, True, True, True, True, True, True, True, True, True, True, True, True],#10
+    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#11
+    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#12
+    [True, True, False,False,False, False, False, False,False,False, True, True,True, False,False,False,False,False, True, True, True, True],#13
+    [True, True, True, True, True,True, True, True, True, True, True, True,True, True, True, True, True, True, True, True,True, True],#14
 ]
 
 # 행렬 크기
@@ -52,7 +53,7 @@ while True:
         continue
 
     # 이미지 좌우 반전 (필요시)
-    #im = cv2.flip(im, -1)
+    im = cv2.flip(im, -1)
 
     # YOLO 모델로 화재 감지
     results = model.predict(im, imgsz=320)  # 입력 이미지 크기 최적화

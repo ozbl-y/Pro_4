@@ -97,7 +97,7 @@ def accumulate_paths(matrix, starts, goals, direction_labels, fire=None):
 
 # 최종 방향 매트릭스를 생성하는 함수
 def generate_final_matrix(direction_count, matrix):
-    final_matrix = [[' ' for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
+    final_matrix = [['O' for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
    
     for i in range(len(matrix)):
         for j in range(len(matrix[0])):
@@ -131,7 +131,7 @@ def search_all_paths(matrix, starts, goals, direction_labels, fire=None):
         for j in range(len(final_matrix[0])):
             if final_matrix[i][j] in direction_labels:
                 print(f"({i}, {j}) = {final_matrix[i][j]}")
-            elif final_matrix[i][j] == '  ':
+            elif final_matrix[i][j] == ' ':
                 print(f"({i}, {j}) = !")
             else:
                 print(f"({i}, {j}) = {final_matrix[i][j]}")
@@ -142,17 +142,17 @@ def search_all_paths(matrix, starts, goals, direction_labels, fire=None):
 def result(final_matrix):
     if final_matrix:
         results = [
-            final_matrix[2][3],
-            final_matrix[4][6],
+            final_matrix[0][3],
+            final_matrix[3][6],
             final_matrix[7][8],
-            final_matrix[11][10],
+            final_matrix[11][9],
             final_matrix[14][11],
             final_matrix[14][4],
             final_matrix[11][5],
-            final_matrix[8][2],
-            final_matrix[1][16],
+            final_matrix[8][0],
+            final_matrix[0][16],
             final_matrix[6][9],
-            final_matrix[8][15],
+            final_matrix[8][16],
             final_matrix[12][20],
         ]
         return results
@@ -184,22 +184,22 @@ def send_data_to_arduinos(data):
 # 매트릭스, 출발 지점 및 목표 지점 설정
 
 matrix = [
-    [True, True, True, True, True, True, True, True, True, True, True,True, True, True, True, True, True, True, True, True, True, True],
-    [True, True, True, True, True, True, True, True, True, True, True,True, True, True, True, True, True, True, True, True, True, True],
-    [True, True, True, True, True, True, True, False, False, False, False,True, True, True, True, True, True, True, True, True, True, True],
-    [True, False, False, True, True, True, True, True, False, True, True,True, True, True, True, True, True, True, True, True, True, True],
-    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, False,False,False,False, True, True, True, True],
-    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, True, True, True, False, True, True, True, True],
-    [True, True, True, False, False, False, False, False, False, True, True,False, False, True, True, True, False, True, True, True, True, True],
-    [True, True, True, True, False, True, True, True, True, True, True,False, False, True, True, True, True, False, True, True, True, True],
-    [True, True, True, True, False, True, True, True, True, True, True,True, True, True, True, True, True, False, False,False,False, True],
-    [True, True, True, True, False, True, True, True, True, True, True,True, True, True, True, True, True, True, True, True, True, True],
-    [True, False, False, False, False, False, False,False,False, False,False,False,False, True, True, True, True, True, False, True, True, True],
-    [True, True, True, True, True, True, True, True, True, True, True,True, True, True, True, True, True, True, True, False, True, True],
-    [True, True, True, True, True, True, True, True, True, True, True,True, False,False,False,False,False, True, True, False, True, True],
-    [True, True, True, False,False, True, True, True, True, True, True,True, True, True, True, True, True, True, True, False, True, True],
-    [True, True, True, True, True, True, True, True, True, True, True,True, True, True, True, True, True, True, True, False, True, True],
-]  
+    [True, True, True, True, True, True, True, True, True, True, True,True, True, True, True, True, True, True, True, True, True, True], #0
+    [True, True, True, True, True, True, True, True, True, True, True,True, True, True, True, True, True, True, True, True, True, True],#1
+    [True, True, True, True, True, True, False, False, False, False, False,True, True, True, True, True, True, True, True, True, True, True],#2
+    [True, False, False, True, True, True, True, True, False, True, True,True, True, True, False,False,False,False, True, True, True, True],#3
+    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#4
+    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#5
+    [True, True, True, True, True, True, False, False, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#6
+    [True, True, True, True, True, True, True, True, True, True,True,True,False, False, True, True, True, True, True, True, True, True],#7
+    [True, True, True, True, True, True, True, True, True, True,True,True,False, False, True, True, True, True, False, False,False,False],#8
+    [True, True, True,  False, False, False, False,False, False, True,True,True,False, False, True, True, True, True, True, True, True, True],#9
+    [True,True, True,True, True, True, True, True,False, True, True, True, True, True, True, True, True, True, True, True, True, True],#10
+    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#11
+    [True, True, True, True, True, True, True, True, False, True, True,True, True, True, True, True, True, True, True, True, True, True],#12
+    [True, True, False,False,False, False, False, False,False,False, True, True,True, False,False,False,False,False, True, True, True, True],#13
+    [True, True, True, True, True,True, True, True, True, True, True, True,True, True, True, True, True, True, True, True,True, True],#14
+]
 
 
 
